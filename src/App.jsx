@@ -84,6 +84,7 @@ function SidebarLink({ to, icon, label }) {
 }
 
 // --- Home Component ---
+
 function Home() {
   const [query, setQuery] = React.useState("");
   const filtered = posts.filter((p) =>
@@ -116,8 +117,11 @@ function Home() {
           </li>
         </ul>
       </section>
+           {/* Quote of the Day */}
+      <QuoteOfTheDay />
 
-      {/* Posts Header + Search */}
+
+        {/* Posts Header + Search */}
       <div className="home-header">
         <h2 className="home-title">Recent Posts</h2>
         <div className="search-wrap">
@@ -129,6 +133,7 @@ function Home() {
           />
         </div>
       </div>
+
 
       {/* Post Cards */}
       <div className="post-list">
@@ -1028,6 +1033,89 @@ export default function App() {
           margin-bottom: 24px;
           color: var(--text-1);
         }
+
+        /* ── Quote of the Day ── */
+.qotd-wrap {
+  margin-bottom: 52px;
+  padding: 32px 36px;
+  background: linear-gradient(135deg, rgba(201,169,110,0.07) 0%, rgba(201,169,110,0.02) 100%);
+  border: 1px solid rgba(201,169,110,0.2);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.6s ease-out both;
+  animation-delay: 0.1s;
+}
+
+.qotd-wrap::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 120px;
+  color: var(--gold);
+  opacity: 0.07;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.qotd-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.qotd-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201,169,110,0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(201,169,110,0.2);
+}
+
+.qotd-ornament {
+  color: var(--gold-dim);
+  font-size: 18px;
+  opacity: 0.5;
+}
+
+.qotd-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 26px;
+  line-height: 2;
+  direction: rtl;
+  text-align: center;
+  color: #d4c8a8;
+  margin-bottom: 20px;
+}
+
+.qotd-text {
+  font-family: 'Crimson Pro', serif;
+  font-size: 21px;
+  font-style: italic;
+  color: #cdc7bc;
+  line-height: 1.75;
+  margin: 0 0 16px 0;
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+.qotd-source {
+  font-size: 13px;
+  color: var(--gold-dim);
+  letter-spacing: 0.03em;
+  margin: 0;
+  font-weight: 500;
+}
+
+        
       `}</style>
 
       <div className="layout">
