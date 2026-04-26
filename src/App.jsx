@@ -11,15 +11,35 @@ const files = import.meta.glob("./posts/*.md", {
   eager: true,
 });
 
+function calculateReadingTime(text) {
+  // Strip markdown syntax to get plain words only
+  const plainText = text
+    .replace(/#{1,6}\s/g, "")         // headings
+    .replace(/\*\*?(.*?)\*\*?/g, "$1") // bold/italic
+    .replace(/\[.*?\]\(.*?\)/g, "")    // links
+    .replace(/`{1,3}.*?`{1,3}/gs, "")  // code
+    .replace(/>\s/g, "")               // blockquotes
+    .replace(/[-*]\s/g, "")            // list markers
+    .trim();
+
+  const wordCount = plainText.split(/\s+/).filter(Boolean).length;
+  const minutes = Math.ceil(wordCount / 200);
+  return { minutes, wordCount };
+}
+
 const posts = Object.entries(files).map(([path, content]) => {
   const { attributes, body } = fm(content);
   const slug = path.split("/").pop().replace(".md", "");
+  const { minutes, wordCount } = calculateReadingTime(body || "");
   return {
     ...attributes,
     slug,
     body: marked(body || ""),
+    readingTime: minutes,
+    wordCount,
   };
 }).sort((a, b) => new Date(b.date) - new Date(a.date));
+
 
 // --- Sidebar Component ---
 function Sidebar() {
@@ -113,15 +133,16 @@ function Home() {
               <div className="post-card-inner">
                 <div className="post-card-top">
                   <div className="post-card-meta">
-                    <time className="post-card-date">{post.date}</time>
-                    {post.tags && (
-                      <div className="post-card-tags">
-                        {post.tags.slice(0, 3).map(tag => (
-                          <span key={tag} className="tag">{tag}</span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                 <time className="post-card-date">{post.date}</time>
+                 <span className="post-card-reading-time">⏱ {post.readingTime} min read</span>
+                 {post.tags && (
+                  <div className="post-card-tags">
+                  {post.tags.slice(0, 3).map(tag => (
+                  <span key={tag} className="tag">{tag}</span>
+                      ))}
+                   </div>
+                  )}
+                </div>
                   <span className="post-card-arrow">→</span>
                 </div>
                 <h3 className="post-card-title">{post.title}</h3>
@@ -170,7 +191,8 @@ function Post() {
       {/* Post Header */}
       <header className="post-header">
         <div className="post-header-meta">
-          <time className="post-meta-date">📅 {post.date}</time>
+            <time className="post-meta-date">📅 {post.date}</time>
+              <span className="post-meta-reading-time">⏱ {post.readingTime} min read · {post.wordCount.toLocaleString()} words</span>
           {post.tags && (
             <div className="post-tags">
               {post.tags.map(tag => (
@@ -625,6 +647,18 @@ export default function App() {
           font-size: 12px;
           color: var(--text-3);
           letter-spacing: 0.03em;
+        }
+        
+        .post-card-reading-time {
+         font-size: 12px;
+         color: var(--text-3);
+         letter-spacing: 0.02em;
+        }
+
+        .post-meta-reading-time {
+        font-size: 13px;
+        color: var(--text-3);
+        letter-spacing: 0.02em;
         }
 
         .post-card-tags {
