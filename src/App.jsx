@@ -84,6 +84,122 @@ function SidebarLink({ to, icon, label }) {
 }
 
 // --- Home Component ---
+// --- Quote of the Day ---
+const islamicQuotes = [
+  {
+    text: "Indeed, with hardship will be ease.",
+    source: "Qur'ān 94:6",
+    arabic: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
+    type: "quran",
+  },
+  {
+    text: "Allah does not burden a soul beyond that it can bear.",
+    source: "Qur'ān 2:286",
+    arabic: "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
+    type: "quran",
+  },
+  {
+    text: "And whoever relies upon Allah — then He is sufficient for him.",
+    source: "Qur'ān 65:3",
+    arabic: "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
+    type: "quran",
+  },
+  {
+    text: "So remember Me; I will remember you.",
+    source: "Qur'ān 2:152",
+    arabic: "فَاذْكُرُونِي أَذْكُرْكُمْ",
+    type: "quran",
+  },
+  {
+    text: "And He found you lost and guided you.",
+    source: "Qur'ān 93:7",
+    arabic: "وَوَجَدَكَ ضَالًّا فَهَدَىٰ",
+    type: "quran",
+  },
+  {
+    text: "The strong man is not the one who wrestles others down. The strong man is the one who controls himself when he is angry.",
+    source: "Sahīh al-Bukhārī 6114",
+    arabic: null,
+    type: "hadith",
+  },
+  {
+    text: "Make things easy and do not make them difficult. Give good tidings and do not drive people away.",
+    source: "Sahīh al-Bukhārī 69",
+    arabic: null,
+    type: "hadith",
+  },
+  {
+    text: "The best of people are those who are most beneficial to people.",
+    source: "Al-Mu'jam al-Awsat 5937",
+    arabic: null,
+    type: "hadith",
+  },
+  {
+    text: "Whoever believes in Allah and the Last Day, let him speak good or remain silent.",
+    source: "Sahīh al-Bukhārī 6018",
+    arabic: null,
+    type: "hadith",
+  },
+  {
+    text: "Do not belittle any good deed, even if it is just greeting your brother with a cheerful face.",
+    source: "Sahīh Muslim 2626",
+    arabic: null,
+    type: "hadith",
+  },
+  {
+    text: "Take up good deeds only as much as you are able, for the best deeds are those done regularly even if they are few.",
+    source: "Sunan Ibn Mājah 4240",
+    arabic: null,
+    type: "hadith",
+  },
+  {
+    text: "Verily, Allah does not look at your appearance or wealth, but rather He looks at your hearts and actions.",
+    source: "Sahīh Muslim 2564",
+    arabic: null,
+    type: "hadith",
+  },
+  {
+    text: "And be patient. Indeed, Allah is with the patient.",
+    source: "Qur'ān 8:46",
+    arabic: "وَاصْبِرُوا ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+    type: "quran",
+  },
+  {
+    text: "And it may be that you dislike a thing which is good for you.",
+    source: "Qur'ān 2:216",
+    arabic: "وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ",
+    type: "quran",
+  },
+];
+
+function QuoteOfTheDay() {
+  // Uses today's date as a number to pick a consistent quote for the whole day
+  const today = new Date();
+  const dayIndex = Math.floor(today.getTime() / 86400000); // milliseconds in a day
+  const quote = islamicQuotes[dayIndex % islamicQuotes.length];
+
+  const label = quote.type === "quran" ? "Āyah of the Day" : "Hadīth of the Day";
+
+  return (
+    <div className="qotd-wrap">
+      <div className="qotd-label-row">
+        <span className="qotd-label">{label}</span>
+        <span className="qotd-ornament">❧</span>
+      </div>
+
+      {quote.arabic && (
+        <p className="qotd-arabic">{quote.arabic}</p>
+      )}
+
+      <blockquote className="qotd-text">
+        "{quote.text}"
+      </blockquote>
+
+      <p className="qotd-source">— {quote.source}</p>
+    </div>
+  );
+}
+
 
 function Home() {
   const [query, setQuery] = React.useState("");
