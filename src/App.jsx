@@ -109,6 +109,11 @@ function Home() {
             <span className="updates-date">April 25, 2026</span>
             <span className="updates-text">Added the True View of 5:44 article.</span>
           </li>
+          <li>
+            <span className="updates-dot" />
+            <span className="updates-date">April 26, 2026</span>
+            <span className="updates-text">Added the Understanding the nature of Šhirk and ʿIbādah.</span>
+          </li>
         </ul>
       </section>
 
