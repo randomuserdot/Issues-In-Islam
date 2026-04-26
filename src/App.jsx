@@ -231,6 +231,11 @@ function Home() {
             <span className="updates-date">April 26, 2026</span>
             <span className="updates-text">Added the Understanding the nature of Šhirk and ʿIbādah.</span>
           </li>
+          <li>
+            <span className="updates-dot" />
+            <span className="updates-date">April 26, 2026</span>
+            <span className="updates-text">Added Quotes of The Day.</span>
+          </li>
         </ul>
       </section>
            {/* Quote of the Day */}
