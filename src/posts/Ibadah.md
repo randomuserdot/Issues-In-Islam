@@ -39,7 +39,7 @@ Bišhr ibn Muʿāḏh narrated: Yazīd narrated to us, from Saʿīd, from Qatada
 
 ““And among the people are those who take, besides Allāh, rivals (andād), loving them as they love Allāh; but those who believe are stronger in love for Allāh” 
 
-that is, from the disbelieverstoward their idols.”
+that is, from the disbelievers toward their idols.”
 
 
 Muḥammad ibn ʿAmr narrated: Abū ʿĀṣim narrated to us, from ʿĪsā, from Ibn Abī Najīḥ, from Mujahid ibn Jabr regarding the statement: 
