@@ -236,6 +236,11 @@ function Home() {
             <span className="updates-date">April 26, 2026</span>
             <span className="updates-text">Added Quotes of The Day.</span>
           </li>
+          <li>
+            <span className="updates-dot" />
+            <span className="updates-date">3rd May, 2026</span>
+            <span className="updates-text">Added the 'Refuting the Misconceptions of Istiqlālists'. </span>
+          </li>
         </ul>
       </section>
            {/* Quote of the Day */}
